@@ -39,7 +39,6 @@ function addTerminalOutput(message) {
     }
 }
 
-// Сохранение состояния
 function saveState() {
     localStorage.setItem('darknetState', JSON.stringify({
         isAuthenticated,
@@ -68,7 +67,7 @@ function loadState() {
     }
 }
 
-// Авторизация
+
 authBtn.addEventListener('click', () => {
     const username = authUsername.value.trim();
     const password = authPassword.value.trim();
@@ -98,7 +97,6 @@ authPassword.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') authBtn.click();
 });
 
-// Проверка авторизации и уровня доступа
 function requireAuth(callback, adminOnly = false) {
     if (!isAuthenticated) {
         addLog('Access denied: Not authenticated');
@@ -161,7 +159,6 @@ function showModal(linkElement) {
 telegramLink.addEventListener('click', (e) => { e.preventDefault(); showModal(telegramLink); });
 footerTelegramLink.addEventListener('click', (e) => { e.preventDefault(); showModal(footerTelegramLink); });
 
-// Генерация случайной цели
 function generateTarget() {
     const ip = `10.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
     const services = ['Web Server', 'Database', 'FTP', 'IoT Device', 'Router'];
@@ -494,7 +491,7 @@ canvas.addEventListener('click', (e) => {
                 addLog(`Node at ${node.target.ip} (${node.target.service}) ${node.infected ? 'infected' : 'cleaned'}`);
             }
         });
-    }, true); // Admin only
+    }, true);
 });
 
 drawNetworkMap();
