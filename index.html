@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Rollpit - DarkNet Terminal</title>
+    <title>Rollpit - DarkNet Terminal v4.0</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14' fill='%2300ff00' font-family='monospace'>$</text></svg>">
 </head>
 <body>
-    <!-- Терминал -->
+    <div class="auth-overlay" id="auth-overlay">
+        <div class="auth-content">
+            <h2>> DarkNet Access</h2>
+            <input type="text" id="auth-username" placeholder="> Username" autocomplete="off">
+            <input type="password" id="auth-password" placeholder="> Password">
+            <button class="auth-btn" id="auth-btn">> Login</button>
+            <p class="auth-error" id="auth-error"></p>
+        </div>
+    </div>
+
     <div class="terminal-overlay" id="terminal-overlay">
         <div class="terminal-content" id="terminal-content">
-            > Initializing DarkNet Terminal v3.2...<br>
+            > Initializing DarkNet Terminal v4.0...<br>
             > Booting kernel... [OK]<br>
             > Loading exploits... [OK]
         </div>
@@ -19,7 +28,7 @@
     </div>
 
     <header>
-        <h2 class="hedt">[root@roolpit /darknet]$</h2>
+        <h2 class="hedt">[root@rollpit /darknet]$</h2>
         <div class="header-btns">
             <button class="logs-btn" id="logs-btn">> Logs</button>
             <button class="firewall-btn" id="firewall-btn">> Firewall</button>
@@ -27,7 +36,9 @@
             <button class="scan-btn" id="scan-btn">> Scan</button>
             <button class="encrypt-btn" id="encrypt-btn">> Encrypt</button>
             <button class="ddos-btn" id="ddos-btn">> DDoS</button>
+            <button class="inject-btn" id="inject-btn">> Inject</button>
             <button class="terminal-btn" id="terminal-btn">> Term</button>
+            <button class="logout-btn" id="logout-btn">> Logout</button>
         </div>
     </header>
 
@@ -35,7 +46,7 @@
         <section class="profile-container">
             <img class="profile" src="https://i.postimg.cc/Fsb0gvvH/photo-2025-03-20-02-17-29.jpg" alt="Profile" id="profile-img">
             <h1 class="nick" id="telegram-link">Rollpit</h1>
-            <p class="info">> DarkNet Access: Active<br>> Threat Level: <span id="threat-level">Critical</span></p>
+            <p class="info">> DarkNet Access: <span id="access-status">Active</span><br>> Threat Level: <span id="threat-level">Critical</span></p>
         </section>
 
         <section class="dashboard">
@@ -98,6 +109,11 @@
                     <h3 class="tool-name">> Exploit DB</h3>
                     <p class="tool-desc">> Find vulns<br>> Success: 75%</p>
                     <button class="tool-btn" data-tool="exploit">> Run</button>
+                </div>
+                <div class="tool-card">
+                    <h3 class="tool-name">> SQL Injector</h3>
+                    <p class="tool-desc">> Inject SQL<br>> Success: 50%</p>
+                    <button class="tool-btn" data-tool="sql">> Run</button>
                 </div>
             </div>
         </section>
