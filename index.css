@@ -22,72 +22,78 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    min-height: 100vh;
 }
 
+/* Фон с эффектом шума и бегущим кодом */
 body::before {
     content: "101010 001101 110011 010101 111000 000111";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    color: rgba(0, 255, 0, 0.1);
-    font-size: 1rem;
+    color: rgba(0, 255, 0, 0.05);
+    font-size: 0.9rem;
     white-space: nowrap;
-    animation: codeRun 20s linear infinite;
+    animation: codeRun 15s linear infinite;
     pointer-events: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise)" opacity="0.05"/></svg>');
 }
 
+/* Хедер */
 header {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 1rem;
-    box-shadow: 0 0 15px var(--shadow);
+    padding: 0.8rem;
+    box-shadow: 0 0 10px var(--shadow);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
 
 .hedt {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.2rem;
     background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: glitch 3s infinite;
+    animation: glitch 2s infinite;
 }
 
 .header-btns {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
+    flex-wrap: wrap;
 }
 
+/* Профиль */
 .profile-container {
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
-    animation: scan 2s infinite;
+    animation: scan 1.5s infinite;
 }
 
 .profile {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 2px solid var(--neon-green);
-    box-shadow: 0 0 10px var(--shadow);
+    box-shadow: 0 0 8px var(--shadow);
     transition: transform 0.3s ease;
 }
 
 .profile:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .nick {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--neon-blue);
-    margin: 1rem 0;
+    margin: 0.8rem 0;
     cursor: pointer;
     transition: color 0.3s ease;
 }
@@ -98,209 +104,139 @@ header {
 
 .info {
     color: var(--gray);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
+/* Секции */
 .news-section, .reasons-section {
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 1000px;
-    background: rgba(0, 0, 0, 0.8);
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.85);
     border: 1px solid var(--neon-green);
-    border-radius: 5px;
-    box-shadow: 0 0 20px var(--shadow);
+    border-radius: 3px;
+    box-shadow: 0 0 15px var(--shadow);
 }
 
 .news, .prich {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--neon-blue);
     text-align: center;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 10px var(--shadow);
-    animation: glitch 4s infinite;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 8px var(--shadow);
+    animation: glitch 3s infinite;
 }
 
 .flex {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
 }
 
+/* Карточки */
 .news-card, .hi, .money, .pepe {
     background: rgba(20, 20, 20, 0.9);
-    padding: 1.5rem;
+    padding: 1rem;
     border: 1px dashed var(--neon-green);
-    border-radius: 5px;
+    border-radius: 3px;
     transition: all 0.3s ease;
 }
 
 .news-card:hover, .hi:hover, .money:hover, .pepe:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px var(--shadow);
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px var(--shadow);
 }
 
 .news-card img, .hi img, .money img, .pepe img {
     width: 100%;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    filter: grayscale(50%);
+    border-radius: 3px;
+    margin-bottom: 0.8rem;
+    filter: grayscale(70%) brightness(80%);
+    transition: filter 0.3s ease;
 }
 
-.infnew, .top {
-    color: var(--neon-blue);
-    font-size: 1.3rem;
+.news-card:hover img, .hi:hover img, .money:hover img, .pepe:hover img {
+    filter: grayscale(0%) brightness(100%);
 }
 
-.infon, .inftop {
-    color: var(--gray);
-    font-size: 0.95rem;
-}
-
+/* Отчет о взломе */
 .hack-report {
-    max-width: 700px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.85);
+    max-width: 600px;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.9);
     border: 1px solid var(--neon-red);
-    border-radius: 5px;
-    box-shadow: 0 0 15px var(--neon-red);
+    border-radius: 3px;
+    box-shadow: 0 0 12px var(--neon-red);
 }
 
-.report-title {
-    color: var(--neon-red);
-    margin-bottom: 1rem;
-}
-
-.progress-bar {
-    height: 20px;
-    background: var(--gray);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--neon-green);
-    width: 0;
-    transition: width 1s ease;
-}
-
+/* Кнопки */
 .hack-btn, .logs-btn, .firewall-btn, .ping-btn {
-
-
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     background: var(--neon-red);
     color: var(--black);
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
 .hack-btn:hover, .logs-btn:hover, .firewall-btn:hover, .ping-btn:hover {
     background: var(--neon-green);
-    color: var(--black);
+    box-shadow: 0 0 5px var(--shadow);
 }
 
-.logs-btn {
-    background: var(--neon-purple);
-}
+.logs-btn { background: var(--neon-purple); }
+.firewall-btn { background: var(--neon-blue); }
+.ping-btn { background: var(--neon-orange); }
 
-.firewall-btn {
-    background: var(--neon-blue);
-}
-
-.ping-btn {
-    background: var(--neon-orange);
-
-}
-
-.output {
-    margin-top: 1rem;
-    color: var(--neon-green);
-    font-size: 0.9rem;
-}
-
+/* Логи */
 .logs-panel {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 600px;
-    background: rgba(0, 0, 0, 0.9);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.95);
     border: 1px solid var(--neon-purple);
     padding: 1rem;
     z-index: 300;
-    max-height: 400px;
+    max-height: 350px;
     overflow-y: auto;
+    box-shadow: 0 0 15px var(--shadow);
 }
 
-.logs-content {
-    color: var(--neon-green);
-    font-size: 0.9rem;
-}
-
+/* Футер */
 footer {
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     border-top: 1px solid var(--neon-green);
-}
-
-.footer-link {
-    color: var(--neon-blue);
-    text-decoration: none;
-}
-
-.footer-link:hover {
-    color: var(--neon-green);
-}
-
-.system-status {
-    margin-top: 0.5rem;
-    color: var(--gray);
     font-size: 0.8rem;
 }
 
-/* Модальное окно */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 200;
-    justify-content: center;
-    align-items: center;
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+    header { padding: 0.5rem; flex-direction: column; gap: 0.5rem; }
+    .hedt { font-size: 1rem; }
+    .header-btns { justify-content: center; }
+    .profile { width: 80px; height: 80px; }
+    .nick { font-size: 1.5rem; }
+    .news, .prich { font-size: 1.2rem; }
+    .flex { grid-template-columns: 1fr; }
+    .hack-report { max-width: 90%; }
 }
 
-.modal-content {
-    background: rgba(20, 20, 20, 0.95);
-    padding: 2rem;
-    border: 1px solid var(--neon-green);
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 0 20px var(--shadow);
-}
-
-.modal-btn {
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-    background: var(--neon-red);
-    color: var(--black);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-}
-
-.modal-btn:hover {
-    background: var(--neon-green);
+@media (max-width: 480px) {
+    body { font-size: 0.85rem; }
+    .profile-container { padding: 1rem; }
+    .news-section, .reasons-section { padding: 1rem; margin: 1rem auto; }
+    .hack-btn, .logs-btn, .firewall-btn, .ping-btn { font-size: 0.8rem; padding: 0.3rem 0.6rem; }
 }
 
 /* Анимации */
@@ -310,15 +246,12 @@ footer {
 }
 
 @keyframes scan {
-    0% { box-shadow: 0 0 10px var(--neon-green); }
-    50% { box-shadow: 0 0 20px var(--neon-green); }
-    100% { box-shadow: 0 0 10px var(--neon-green); }
+    0%, 100% { box-shadow: 0 0 8px var(--neon-green); }
+    50% { box-shadow: 0 0 15px var(--neon-green); }
 }
 
 @keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(2px, 2px); }
-    100% { transform: translate(0); }
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(1px, -1px); }
+}
