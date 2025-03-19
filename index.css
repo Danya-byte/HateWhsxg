@@ -3,6 +3,7 @@
     --neon-green: #00ff00;
     --neon-blue: #00b7ff;
     --neon-red: #ff4444;
+    --neon-purple: #bb00ff;
     --gray: #888888;
     --shadow: rgba(0, 255, 0, 0.2);
 }
@@ -22,7 +23,6 @@ body {
     position: relative;
 }
 
-/* Бегущий код в фоне */
 body::before {
     content: "101010 001101 110011 010101 111000 000111";
     position: absolute;
@@ -177,9 +177,9 @@ header {
     transition: width 1s ease;
 }
 
-.hack-btn {
-    display: block;
-    margin: 1rem auto;
+.hack-btn, .exploit-btn, .key-btn, .scan-btn {
+    display: inline-block;
+    margin: 0.5rem;
     padding: 0.5rem 1rem;
     background: var(--neon-red);
     color: var(--black);
@@ -187,11 +187,31 @@ header {
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
 }
 
-.hack-btn:hover {
+.hack-btn:hover, .exploit-btn:hover, .key-btn:hover, .scan-btn:hover {
     background: var(--neon-green);
     color: var(--black);
+}
+
+.exploit-btn {
+    background: var(--neon-purple);
+}
+
+.key-btn {
+    background: var(--neon-blue);
+}
+
+.scan-btn {
+    background: var(--neon-green);
+    color: var(--black);
+}
+
+.output {
+    margin-top: 1rem;
+    color: var(--neon-green);
+    font-size: 0.9rem;
 }
 
 footer {

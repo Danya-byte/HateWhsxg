@@ -61,7 +61,13 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
-            <button class="hack-btn" id="hack-btn">> Simulate Hack</button>
+            <div>
+                <button class="hack-btn" id="hack-btn">> Simulate Hack</button>
+                <button class="exploit-btn" id="exploit-btn">> Download Exploit</button>
+                <button class="key-btn" id="key-btn">> Generate Key</button>
+                <button class="scan-btn" id="scan-btn">> Run Scanner</button>
+            </div>
+            <p class="output" id="output">> Awaiting command...</p>
             <p>> Hacks Executed: <span id="hack-counter">0</span></p>
         </div>
     </main>
@@ -71,6 +77,7 @@
         <p>> System warning: Satire detected [Y/N]</p>
     </footer>
 
+    <!-- Модальное окно -->
     <div class="modal" id="confirm-modal">
         <div class="modal-content">
             <p>> WARNING: Are you sure you want to access this channel?</p>
@@ -80,12 +87,14 @@
     </div>
 
     <script>
+        // Счётчик хаков
         let hackCount = 0;
         setInterval(() => {
             hackCount += Math.floor(Math.random() * 5) + 1;
             document.getElementById('hack-counter').textContent = hackCount;
         }, 1500);
 
+        // Модальное окно для Telegram-ссылок
         const telegramLink = document.getElementById('telegram-link');
         const footerTelegramLink = document.getElementById('footer-telegram-link');
         const modal = document.getElementById('confirm-modal');
@@ -112,13 +121,56 @@
             showModal(footerTelegramLink);
         });
 
+        // Симуляция взлома
         const hackBtn = document.getElementById('hack-btn');
         const progressFill = document.getElementById('progress-fill');
+        const output = document.getElementById('output');
         hackBtn.addEventListener('click', () => {
             progressFill.style.width = '0';
+            output.textContent = '> Initiating hack simulation...';
             setTimeout(() => {
                 progressFill.style.width = '100%';
+                output.textContent = '> Hack simulation complete!';
             }, 100);
+        });
+
+        // Скачать эксплойт
+        const exploitBtn = document.getElementById('exploit-btn');
+        exploitBtn.addEventListener('click', () => {
+            output.textContent = '> Downloading exploit_whsxg.exe...';
+            progressFill.style.width = '0';
+            setTimeout(() => {
+                progressFill.style.width = '75%';
+                output.textContent = '> Download complete! Check /dev/null';
+            }, 1000);
+        });
+
+        // Генерация ключа
+        const keyBtn = document.getElementById('key-btn');
+        keyBtn.addEventListener('click', () => {
+            const key = Math.random().toString(36).substring(2, 15).toUpperCase();
+            output.textContent = '> Generating key...';
+            progressFill.style.width = '0';
+            setTimeout(() => {
+                progressFill.style.width = '50%';
+                output.textContent = `> Key generated: ${key}`;
+            }, 800);
+        });
+
+        // Запуск сканнера
+        const scanBtn = document.getElementById('scan-btn');
+        scanBtn.addEventListener('click', () => {
+            output.textContent = '> Starting network scan...';
+            progressFill.style.width = '0';
+            let scanProgress = 0;
+            const scanInterval = setInterval(() => {
+                scanProgress += 25;
+                progressFill.style.width = `${scanProgress}%`;
+                if (scanProgress >= 100) {
+                    clearInterval(scanInterval);
+                    output.textContent = '> Scan complete: 1337 vulnerabilities found!';
+                }
+            }, 500);
         });
     </script>
 </body>
