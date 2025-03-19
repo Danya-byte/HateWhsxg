@@ -1,101 +1,81 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>HateWhsxg - Web3 Хитер</title>
+    <title>HateWhsxg - Хакерская Хитрость</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <header>
-        <h2 class="hedt">hatewhsxg.xyz</h2>
+        <h2 class="hedt">[root@hatewhsxg ~]$</h2>
     </header>
 
-    <div class="profile-container">
-        <img class="profile" src="profile.png" alt="Profile">
-        <a href="https://t.me/hatewhsxg"><h1 class="nick">Whsxg</h1></a>
-        <p class="info">Новый игрок в скам офертах Web3<br>Хитер высшего уровня</p>
-    </div>
+    <main>
+        <section class="profile-container">
+            <img class="profile" src="profile.png" alt="Profile">
+            <a href="https://t.me/hatewhsxg"><h1 class="nick">Whsxg</h1></a>
+            <p class="info">> Accessing Web3 scam protocols... [SUCCESS]<br>> Stealth level: Master Hacker</p>
+        </section>
 
-    <section class="news-section">
-        <h2 class="news">Свежие новости</h2>
-        <div class="flex">
-            <div class="news-card news1">
-                <div class="mgn1">
+        <section class="news-section">
+            <h2 class="news">> LATEST HACKS</h2>
+            <div class="flex">
+                <div class="news-card">
                     <img src="news1.png" alt="News 1">
+                    <h3 class="infnew">> Sticker Exploit</h3>
+                    <p class="infon">> Infiltrated gift system<br>> Redirected assets to /dev/whsxg</p>
                 </div>
-                <h3 class="infnew">Стикеры и подарки</h3>
-                <p class="infon">Хитер Whsxg получил доступ ко всем подаркам в новом обновлении. Теперь вы можете отправлять их только ему!</p>
-            </div>
-            <div class="news-card news2">
-                <div class="mgn2">
+                <div class="news-card">
                     <img src="news2.png" alt="News 2">
+                    <h3 class="infnew">> Telegram Hijack</h3>
+                    <p class="infon">> Python script injection<br>> Stars rerouted to wallet: 0xWhsxg</p>
                 </div>
-                <h3 class="infnew">Сообщения за звёзды</h3>
-                <p class="infon">Взлом скриптов Telegram через Python позволяет хитеру собирать все подарки и звезды пользователей.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reasons-section">
-        <h2 class="prich">Три причины вынести хитера</h2>
-        <div class="flex2">
-            <div class="hi">
-                <img src="hi.gif" alt="Hi">
-                <h3 class="top">Написать привет</h3>
-                <p class="inftop">Написав привет хитеру он будет очень рад и сможет одуматься</p>
+        <section class="reasons-section">
+            <h2 class="prich">> COUNTERMEASURES</h2>
+            <div class="flex">
+                <div class="hi">
+                    <img src="hi.gif" alt="Hi">
+                    <h3 class="top">> Send Greeting</h3>
+                    <p class="inftop">> Attempt social engineering<br>> Success chance: 10%</p>
+                </div>
+                <div class="money">
+                    <img src="money.gif" alt="Money">
+                    <h3 class="top">> Pay Ransom</h3>
+                    <p class="inftop">> Transfer crypto to stop hacks<br>> Success chance: 25%</p>
+                </div>
+                <div class="pepe">
+                    <img src="pepe.gif" alt="Pepe">
+                    <h3 class="top">> Gift Pepe</h3>
+                    <p class="inftop">> NFT distraction technique<br>> Success chance: 15%</p>
+                </div>
             </div>
-            <div class="money">
-                <img src="money.gif" alt="Money">
-                <h3 class="top">Заплатить денег</h3>
-                <p class="inftop">Заплатив хитеру он будет очень рад и сможет одуматься</p>
-            </div>
-            <div class="pepe">
-                <img src="pepe.gif" alt="Pepe">
-                <h3 class="top">Подарить Pepe</h3>
-                <p class="inftop">Подарив Pepe хитеру он будет очень рад и сможет одуматься</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="hack-report">
-        <h3 class="report-title">⚡ Отчет о взломе</h3>
-        <div class="hack-meter">
+        <div class="hack-report">
+            <h3 class="report-title">> HACK STATUS</h3>
+            <p>> Running exploit_whsxg.exe...</p>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
-            <p class="meter-text">Уровень хитрости: 137% (критический)</p>
+            <p>> Hacks Executed: <span id="hack-counter">0</span></p>
         </div>
-    </div>
+    </main>
 
     <footer>
-        <a href="https://t.me/hatewhsxg" class="footer-link">Telegram Channel</a>
-        <p>Этот сайт является сатирой (или нет?)</p>
-        <p class="system-status">
-            SYSTEM STATUS: WHISPER.EXE ACTIVE |
-            <span id="hack-counter">0</span> HACKS
-        </p>
+        <p>> Connected to: <a href="https://t.me/hatewhsxg" class="footer-link">telegram@hatewhsxg</a></p>
+        <p>> System warning: Satire detected [Y/N]</p>
     </footer>
 
     <script>
         let hackCount = 0;
         setInterval(() => {
-            hackCount += Math.floor(Math.random() * 3) + 1;
+            hackCount += Math.floor(Math.random() * 5) + 1;
             document.getElementById('hack-counter').textContent = hackCount;
-        }, 2000);
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.news-card, .hi, .money, .pepe').forEach(el => {
-            observer.observe(el);
-        });
+        }, 1500);
     </script>
 </body>
 </html>
