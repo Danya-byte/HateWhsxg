@@ -9,6 +9,11 @@
 <body>
     <header>
         <h2 class="hedt">[root@hatewhsxg ~]$</h2>
+        <div class="header-btns">
+            <button class="logs-btn" id="logs-btn">> Show Logs</button>
+            <button class="firewall-btn" id="firewall-btn">> Toggle Firewall</button>
+            <button class="ping-btn" id="ping-btn">> Ping Network</button>
+        </div>
     </header>
 
     <main>
@@ -61,12 +66,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
-            <div>
-                <button class="hack-btn" id="hack-btn">> Simulate Hack</button>
-                <button class="exploit-btn" id="exploit-btn">> Download Exploit</button>
-                <button class="key-btn" id="key-btn">> Generate Key</button>
-                <button class="scan-btn" id="scan-btn">> Run Scanner</button>
-            </div>
+            <button class="hack-btn" id="hack-btn">> Simulate Hack</button>
             <p class="output" id="output">> Awaiting command...</p>
             <p>> Hacks Executed: <span id="hack-counter">0</span></p>
         </div>
@@ -74,7 +74,7 @@
 
     <footer>
         <p>> Connected to: <a href="https://t.me/hatewhsxg" class="footer-link" id="footer-telegram-link">telegram@hatewhsxg</a></p>
-        <p>> System warning: Satire detected [Y/N]</p>
+        <p class="system-status">> System Uptime: <span id="uptime">0s</span> | CPU Load: <span id="cpu-load">0%</span></p>
     </footer>
 
     <!-- Модальное окно -->
@@ -86,13 +86,36 @@
         </div>
     </div>
 
+    <!-- Панель логов -->
+    <div class="logs-panel" id="logs-panel">
+        <div class="logs-content" id="logs-content">> System logs initialized...</div>
+    </div>
+
     <script>
+        // Логи
+        const logsPanel = document.getElementById('logs-panel');
+        const logsContent = document.getElementById('logs-content');
+        function addLog(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logsContent.innerHTML += `<br>> [${timestamp}] ${message}`;
+            logsContent.scrollTop = logsContent.scrollHeight;
+        }
+
         // Счётчик хаков
         let hackCount = 0;
         setInterval(() => {
             hackCount += Math.floor(Math.random() * 5) + 1;
             document.getElementById('hack-counter').textContent = hackCount;
+            if (Math.random() < 0.1) addLog('Random system event detected');
         }, 1500);
+
+        // Системный статус
+        let uptime = 0;
+        setInterval(() => {
+            uptime++;
+            document.getElementById('uptime').textContent = `${uptime}s`;
+            document.getElementById('cpu-load').textContent = `${Math.floor(Math.random() * 100)}%`;
+        }, 1000);
 
         // Модальное окно для Telegram-ссылок
         const telegramLink = document.getElementById('telegram-link');
@@ -105,9 +128,11 @@
             modal.style.display = 'flex';
             confirmYes.onclick = () => {
                 window.location.href = 'https://t.me/hatewhsxg';
+                addLog('Accessed Telegram channel');
             };
             confirmNo.onclick = () => {
                 modal.style.display = 'none';
+                addLog('Telegram access denied');
             };
         }
 
@@ -128,49 +153,43 @@
         hackBtn.addEventListener('click', () => {
             progressFill.style.width = '0';
             output.textContent = '> Initiating hack simulation...';
+            addLog('Hack simulation started');
             setTimeout(() => {
                 progressFill.style.width = '100%';
                 output.textContent = '> Hack simulation complete!';
+                addLog('Hack simulation completed');
             }, 100);
         });
 
-        // Скачать эксплойт
-        const exploitBtn = document.getElementById('exploit-btn');
-        exploitBtn.addEventListener('click', () => {
-            output.textContent = '> Downloading exploit_whsxg.exe...';
+        // Показать логи
+        const logsBtn = document.getElementById('logs-btn');
+        logsBtn.addEventListener('click', () => {
+            logsPanel.style.display = logsPanel.style.display === 'block' ? 'none' : 'block';
+            addLog('Toggled logs panel');
+        });
+
+        // Включение/выключение файрвола
+        let firewallActive = false;
+        const firewallBtn = document.getElementById('firewall-btn');
+        firewallBtn.addEventListener('click', () => {
+            firewallActive = !firewallActive;
+            output.textContent = `> Firewall ${firewallActive ? 'enabled' : 'disabled'}`;
+            addLog(`Firewall ${firewallActive ? 'enabled' : 'disabled'}`);
+            progressFill.style.width = firewallActive ? '50%' : '0';
+        });
+
+        // Пинг сети
+        const pingBtn = document.getElementById('ping-btn');
+        pingBtn.addEventListener('click', () => {
+            output.textContent = '> Pinging network...';
+            addLog('Network ping initiated');
             progressFill.style.width = '0';
             setTimeout(() => {
-                progressFill.style.width = '75%';
-                output.textContent = '> Download complete! Check /dev/null';
+                const latency = Math.floor(Math.random() * 200) + 50;
+                progressFill.style.width = '80%';
+                output.textContent = `> Ping complete: ${latency}ms`;
+                addLog(`Ping completed: ${latency}ms`);
             }, 1000);
-        });
-
-        // Генерация ключа
-        const keyBtn = document.getElementById('key-btn');
-        keyBtn.addEventListener('click', () => {
-            const key = Math.random().toString(36).substring(2, 15).toUpperCase();
-            output.textContent = '> Generating key...';
-            progressFill.style.width = '0';
-            setTimeout(() => {
-                progressFill.style.width = '50%';
-                output.textContent = `> Key generated: ${key}`;
-            }, 800);
-        });
-
-        // Запуск сканнера
-        const scanBtn = document.getElementById('scan-btn');
-        scanBtn.addEventListener('click', () => {
-            output.textContent = '> Starting network scan...';
-            progressFill.style.width = '0';
-            let scanProgress = 0;
-            const scanInterval = setInterval(() => {
-                scanProgress += 25;
-                progressFill.style.width = `${scanProgress}%`;
-                if (scanProgress >= 100) {
-                    clearInterval(scanInterval);
-                    output.textContent = '> Scan complete: 1337 vulnerabilities found!';
-                }
-            }, 500);
         });
     </script>
 </body>

@@ -4,6 +4,7 @@
     --neon-blue: #00b7ff;
     --neon-red: #ff4444;
     --neon-purple: #bb00ff;
+    --neon-orange: #ff9500;
     --gray: #888888;
     --shadow: rgba(0, 255, 0, 0.2);
 }
@@ -44,7 +45,9 @@ header {
     z-index: 100;
     padding: 1rem;
     box-shadow: 0 0 15px var(--shadow);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .hedt {
@@ -55,6 +58,11 @@ header {
     background-clip: text;
     color: transparent;
     animation: glitch 3s infinite;
+}
+
+.header-btns {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .profile-container {
@@ -177,9 +185,7 @@ header {
     transition: width 1s ease;
 }
 
-.hack-btn, .exploit-btn, .key-btn, .scan-btn {
-    display: inline-block;
-    margin: 0.5rem;
+.hack-btn, .logs-btn, .firewall-btn, .ping-btn {
     padding: 0.5rem 1rem;
     background: var(--neon-red);
     color: var(--black);
@@ -190,26 +196,46 @@ header {
     transition: all 0.3s ease;
 }
 
-.hack-btn:hover, .exploit-btn:hover, .key-btn:hover, .scan-btn:hover {
+.hack-btn:hover, .logs-btn:hover, .firewall-btn:hover, .ping-btn:hover {
     background: var(--neon-green);
     color: var(--black);
 }
 
-.exploit-btn {
+.logs-btn {
     background: var(--neon-purple);
 }
 
-.key-btn {
+.firewall-btn {
     background: var(--neon-blue);
 }
 
-.scan-btn {
-    background: var(--neon-green);
-    color: var(--black);
+.ping-btn {
+    background: var(--neon-orange);
 }
 
 .output {
     margin-top: 1rem;
+    color: var(--neon-green);
+    font-size: 0.9rem;
+}
+
+.logs-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid var(--neon-purple);
+    padding: 1rem;
+    z-index: 300;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.logs-content {
     color: var(--neon-green);
     font-size: 0.9rem;
 }
@@ -228,6 +254,12 @@ footer {
 
 .footer-link:hover {
     color: var(--neon-green);
+}
+
+.system-status {
+    margin-top: 0.5rem;
+    color: var(--gray);
+    font-size: 0.8rem;
 }
 
 /* Модальное окно */
