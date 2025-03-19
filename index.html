@@ -11,7 +11,7 @@
     <!-- Терминал -->
     <div class="terminal-overlay" id="terminal-overlay">
         <div class="terminal-content" id="terminal-content">
-            > Initializing DarkNet Terminal v3.1...<br>
+            > Initializing DarkNet Terminal v3.2...<br>
             > Booting kernel... [OK]<br>
             > Loading exploits... [OK]
         </div>
@@ -26,6 +26,7 @@
             <button class="ping-btn" id="ping-btn">> Ping</button>
             <button class="scan-btn" id="scan-btn">> Scan</button>
             <button class="encrypt-btn" id="encrypt-btn">> Encrypt</button>
+            <button class="ddos-btn" id="ddos-btn">> DDoS</button>
             <button class="terminal-btn" id="terminal-btn">> Term</button>
         </div>
     </header>
@@ -51,6 +52,10 @@
                 <div class="dash-card">
                     <h3 class="dash-label">> Network</h3>
                     <p class="dash-value" id="net-traffic">0 KB/s</p>
+                </div>
+                <div class="dash-card">
+                    <h3 class="dash-label">> Botnet</h3>
+                    <p class="dash-value" id="botnet-size">0</p>
                 </div>
             </div>
         </section>
@@ -97,6 +102,11 @@
             </div>
         </section>
 
+        <section class="map-section">
+            <h2 class="map-title">> NETWORK MAP</h2>
+            <canvas id="network-map" width="600" height="300"></canvas>
+        </section>
+
         <div class="hack-report">
             <h3 class="report-title">> EXPLOIT CONTROL</h3>
             <p>> Payload: <span id="payload-status">Idle</span> | Target: <span id="target-ip">192.168.1.1</span></p>
@@ -125,8 +135,6 @@
     <div class="logs-panel" id="logs-panel">
         <div class="logs-content" id="logs-content">> System boot...</div>
     </div>
-
-    <audio id="beep-sound" src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA="></audio>
 
     <script src="index.js"></script>
 </body>

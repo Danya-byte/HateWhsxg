@@ -3,29 +3,40 @@ const logsContent = document.getElementById('logs-content');
 const terminalOverlay = document.getElementById('terminal-overlay');
 const terminalContent = document.getElementById('terminal-content');
 const terminalInput = document.getElementById('terminal-input');
-const beepSound = document.getElementById('beep-sound');
+const beepSound = new Audio('https://www.soundjay.com/buttons/beep-01a.mp3'); // Надёжный внешний источник звука
+beepSound.volume = 0.1;
 
 function addLog(message) {
     const timestamp = new Date().toLocaleTimeString();
     logsContent.innerHTML += `<br>> [${timestamp}] ${message}`;
     logsContent.scrollTop = logsContent.scrollHeight;
-    beepSound.play();
+    try {
+        beepSound.play().catch(err => console.log('Audio play failed:', err));
+    } catch (err) {
+        console.log('Audio unavailable:', err);
+    }
 }
 
 function addTerminalOutput(message) {
     terminalContent.innerHTML += `<br>> ${message}`;
     terminalContent.scrollTop = terminalContent.scrollHeight;
-    beepSound.play();
+    try {
+        beepSound.play().catch(err => console.log('Audio play failed:', err));
+    } catch (err) {
+        console.log('Audio unavailable:', err);
+    }
 }
 
-let hackCount = 0, packetCount = 0, connCount = 0;
+let hackCount = 0, packetCount = 0, connCount = 0, botnetSize = 0;
 setInterval(() => {
     hackCount += Math.floor(Math.random() * 3) + 1;
     packetCount += Math.floor(Math.random() * 100) + 50;
     connCount += Math.floor(Math.random() * 2);
+    botnetSize += Math.floor(Math.random() * 5);
     document.getElementById('hack-counter').textContent = hackCount;
     document.getElementById('packet-counter').textContent = packetCount;
     document.getElementById('conn-count').textContent = connCount;
+    document.getElementById('botnet-size').textContent = botnetSize;
     if (Math.random() < 0.2) addLog(`Intrusion #${hackCount} | Packets: ${packetCount}`);
 }, 2000);
 
@@ -132,6 +143,20 @@ encryptBtn.addEventListener('click', () => {
     }, 1200);
 });
 
+const ddosBtn = document.getElementById('ddos-btn');
+ddosBtn.addEventListener('click', () => {
+    output.textContent = '> Launching DDoS attack...';
+    addLog('DDoS attack initiated');
+    progressFill.style.width = '0';
+    setTimeout(() => {
+        progressFill.style.width = '100%';
+        output.textContent = '> DDoS attack successful: 500 Mbps';
+        addLog('DDoS attack completed');
+        botnetSize += Math.floor(Math.random() * 10) + 5;
+        document.getElementById('botnet-size').textContent = botnetSize;
+    }, 1500);
+});
+
 const terminalBtn = document.getElementById('terminal-btn');
 terminalBtn.addEventListener('click', () => {
     terminalOverlay.style.display = terminalOverlay.style.display === 'flex' ? 'none' : 'flex';
@@ -155,12 +180,14 @@ toolButtons.forEach(btn => {
 });
 
 const commands = {
-    'help': 'Available commands: help, clear, ping, scan, exploit, status, exit',
+    'help': 'Available commands: help, clear, ping, scan, exploit, ddos, encrypt, status, exit',
     'clear': () => terminalContent.innerHTML = '> Terminal cleared',
     'ping': 'Pinging network... Check output panel',
     'scan': 'Scanning network... Check output panel',
     'exploit': 'Deploying exploit... Check output panel',
-    'status': `System status: Uptime ${uptime}s, Hacks ${hackCount}, Packets ${packetCount}`,
+    'ddos': 'Launching DDoS... Check output panel',
+    'encrypt': 'Encrypting data... Check output panel',
+    'status': `System status: Uptime ${uptime}s, Hacks ${hackCount}, Packets ${packetCount}, Botnet ${botnetSize}`,
     'exit': () => terminalOverlay.style.display = 'none'
 };
 
@@ -178,6 +205,8 @@ terminalInput.addEventListener('keydown', (e) => {
         if (input === 'ping') pingBtn.click();
         if (input === 'scan') scanBtn.click();
         if (input === 'exploit') hackBtn.click();
+        if (input === 'ddos') ddosBtn.click();
+        if (input === 'encrypt') encryptBtn.click();
     }
 });
 
@@ -188,7 +217,8 @@ const alerts = [
     'Firewall breach attempt',
     'Rootkit installation failed',
     'SQL injection detected',
-    'Port scan detected'
+    'Port scan detected',
+    'Botnet node added'
 ];
 setInterval(() => {
     if (Math.random() < 0.15) {
@@ -209,3 +239,46 @@ setInterval(() => {
     const levels = ['Low', 'Medium', 'High', 'Critical'];
     threatLevel.textContent = levels[Math.floor(Math.random() * levels.length)];
 }, 5000);
+
+// Network Map
+const canvas = document.getElementById('network-map');
+const ctx = canvas.getContext('2d');
+const nodes = [];
+for (let i = 0; i < 20; i++) {
+    nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2
+    });
+}
+
+function drawNetworkMap() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = 'rgba(0, 255, 0, 0.5)';
+    ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+
+    nodes.forEach(node => {
+        node.x += node.dx;
+        node.y += node.dy;
+        if (node.x < 0 || node.x > canvas.width) node.dx *= -1;
+        if (node.y < 0 || node.y > canvas.height) node.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        nodes.forEach(other => {
+            const dist = Math.hypot(node.x - other.x, node.y - other.y);
+            if (dist < 100) {
+                ctx.beginPath();
+                ctx.moveTo(node.x, node.y);
+                ctx.lineTo(other.x, other.y);
+                ctx.stroke();
+            }
+        });
+    });
+
+    requestAnimationFrame(drawNetworkMap);
+}
+drawNetworkMap();
