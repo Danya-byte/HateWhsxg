@@ -1,219 +1,204 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <title>HATEWHSXG - FUCK EVERYTHING</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    <header>
-        <h2 class="hedt">HATE CENTRAL</h2>
-        <div class="header-btns">
-            <button class="logs-btn" id="logs-btn">> HATE LOGS</button>
-            <button class="firewall-btn" id="firewall-btn">> FUCK DEFENSE</button>
-            <button class="ping-btn" id="ping-btn">> SCREAM</button>
-            <button id="troll-btn">> TROLL SHIT</button>
-        </div>
-    </header>
+/* index.css */
+:root {
+    --black: #000000;
+    --toxic-yellow: #ffff00;
+    --puke-green: #00ff00;
+    --bloody-red: #ff0000;
+    --sick-purple: #ff00ff;
+    --shadow: rgba(255, 0, 0, 0.5);
+}
 
-    <main>
-        <section class="profile-container">
-            <img class="profile" src="profile.png" alt="HATE">
-            <h1 class="nick" id="telegram-link">WHSXG</h1>
-            <p class="info">> I HATE YOU ALL<br>> RAGE LEVEL: MAX</p>
-            <button id="hate-btn">> SPIT HATE</button>
-        </section>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        <section class="news-section">
-            <h2 class="news">> MY HATE LIST</h2>
-            <div class="flex">
-                <div class="news-card">
-                    <img src="news1.png" alt="Hate">
-                    <h3 class="infnew">> FUCK STICKERS</h3>
-                    <p class="infon">> BURNED THEIR CRAP<br>> FUCK THAT SHIT</p>
-                </div>
-                <div class="news-card">
-                    <img src="news2.png" alt="Hate">
-                    <h3 class="infnew">> FUCK TELEGRAM</h3>
-                    <p class="infon">> RUINED THEIR DAY<br>> EAT MY HATE</p>
-                </div>
-            </div>
-        </section>
+body {
+    background: var(--black);
+    color: var(--toxic-yellow);
+    font-family: 'Impact', sans-serif;
+    line-height: 1.2;
+    overflow-x: hidden;
+    text-transform: uppercase;
+}
 
-        <section class="reasons-section">
-            <h2 class="prich">> TRY ME BITCH</h2>
-            <div class="flex">
-                <div class="hi">
-                    <img src="hi.gif" alt="Troll">
-                    <h3 class="top">> FAKE HELLO</h3>
-                    <p class="inftop">> THEN FUCK YOU<br>> SUCCESS: 1%</p>
-                </div>
-                <div class="money">
-                    <img src="money.gif" alt="Scam">
-                    <h3 class="top">> GIVE ME CASH</h3>
-                    <p class="inftop">> THEN I HATE MORE<br>> SUCCESS: 0%</p>
-                </div>
-                <div class="pepe">
-                    <img src="pepe.gif" alt="Pepe">
-                    <h3 class="top">> PEPE HATE</h3>
-                    <p class="inftop">> UGLY MEME ATTACK<br>> SUCCESS: 2%</p>
-                </div>
-            </div>
-        </section>
+body::before {
+    content: "FUCK YOU FUCK OFF DIE DIE DIE HATE HATE HATE";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    color: rgba(255, 0, 0, 0.2);
+    font-size: 2rem;
+    animation: hateRage 10s linear infinite;
+    transform: rotate(-15deg);
+}
 
-        <div class="hack-report">
-            <h3 class="report-title">> HATE METER</h3>
-            <p>> RAGING HARD...</p>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <button class="hack-btn" id="hack-btn">> MORE HATE</button>
-            <p class="output" id="output">> I HATE YOU...</p>
-            <p>> HATE COUNT: <span id="hack-counter">0</span></p>
-        </div>
-    </main>
+header {
+    background: var(--black);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 0.5rem;
+    border-bottom: 3px solid var(--bloody-red);
+    box-shadow: 0 0 25px var(--shadow);
+}
 
-    <footer>
-        <p>> YELL AT ME: <a href="https://t.me/hatewhsxg" class="footer-link" id="footer-telegram-link">TG@HATEWHSXG</a></p>
-        <p class="system-status">> HATE TIME: <span id="uptime">0s</span> | RAGE: <span id="cpu-load">0%</span></p>
-    </footer>
+.hedt {
+    font-size: 2.5rem;
+    color: var(--puke-green);
+    text-shadow: 0 0 15px var(--bloody-red);
+    animation: rageText 0.3s infinite;
+}
 
-    <div class="modal" id="confirm-modal">
-        <div class="modal-content">
-            <p>> WANNA FEEL MY HATE?</p>
-            <button class="modal-btn" id="confirm-yes">> YES FUCKER</button>
-            <button class="modal-btn" id="confirm-no">> NO LOSER</button>
-        </div>
-    </div>
+.header-btns {
+    display: flex;
+    gap: 0.2rem;
+}
 
-    <div class="logs-panel" id="logs-panel">
-        <div class="logs-content" id="logs-content">> HATE MODE ON...</div>
-    </div>
+.profile-container {
+    padding: 2rem 1rem;
+    text-align: center;
+    margin: 4rem 1rem 2rem;
+    border: 3px solid var(--toxic-yellow);
+    animation: hatePulse 0.5s infinite;
+}
 
-    <script>
-        const logsPanel = document.getElementById('logs-panel');
-        const logsContent = document.getElementById('logs-content');
-        function addLog(message) {
-            const timestamp = new Date().toLocaleTimeString();
-            logsContent.innerHTML += `<br>> [${timestamp}] ${message}`;
-            logsContent.scrollTop = logsContent.scrollHeight;
-        }
+.profile {
+    width: 140px;
+    height: 140px;
+    border: 4px solid var(--bloody-red);
+    transform: rotate(10deg);
+    filter: brightness(150%) contrast(150%);
+}
 
-        let hateCount = 0;
-        setInterval(() => {
-            hateCount += Math.floor(Math.random() * 10) + 1;
-            document.getElementById('hack-counter').textContent = hateCount;
-        }, 1000);
+.profile:hover {
+    transform: scale(1.2) rotate(-10deg);
+    border-color: var(--sick-purple);
+}
 
-        let uptime = 0;
-        setInterval(() => {
-            uptime++;
-            document.getElementById('uptime').textContent = `${uptime}s`;
-            document.getElementById('cpu-load').textContent = `${Math.floor(Math.random() * 100)}%`;
-        }, 1000);
+.nick {
+    font-size: 3rem;
+    color: var(--bloody-red);
+    text-shadow: 0 0 20px var(--shadow);
+    animation: hateShake 0.1s infinite;
+}
 
-        const telegramLink = document.getElementById('telegram-link');
-        const footerTelegramLink = document.getElementById('footer-telegram-link');
-        const modal = document.getElementById('confirm-modal');
-        const confirmYes = document.getElementById('confirm-yes');
-        const confirmNo = document.getElementById('confirm-no');
+.nick:hover {
+    color: var(--toxic-yellow);
+}
 
-        function showModal(linkElement) {
-            modal.style.display = 'flex';
-            confirmYes.onclick = () => {
-                window.location.href = 'https://t.me/hatewhsxg';
-                addLog('HATE JOINED');
-            };
-            confirmNo.onclick = () => {
-                modal.style.display = 'none';
-                addLog('FUCK OFF DENIED');
-            };
-        }
+.news-section, .reasons-section {
+    padding: 1rem;
+    margin: 2rem 1rem;
+    background: rgba(0, 0, 0, 0.9);
+    border: 3px dashed var(--sick-purple);
+    box-shadow: 0 0 30px var(--shadow);
+}
 
-        telegramLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal(telegramLink);
-        });
+.news, .prich {
+    font-size: 2.8rem;
+    color: var(--toxic-yellow);
+    text-shadow: 0 0 20px var(--bloody-red);
+    animation: hateBlink 0.2s infinite;
+}
 
-        footerTelegramLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal(footerTelegramLink);
-        });
+.flex {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+}
 
-        const hackBtn = document.getElementById('hack-btn');
-        const progressFill = document.getElementById('progress-fill');
-        const output = document.getElementById('output');
-        hackBtn.addEventListener('click', () => {
-            progressFill.style.width = '0';
-            output.textContent = '> HATING HARDER...';
-            addLog('HATE BLAST');
-            setTimeout(() => {
-                progressFill.style.width = '100%';
-                output.textContent = '> FUCK YOU ALL!';
-                addLog('HATE MAXED');
-            }, 500);
-        });
+.news-card, .hi, .money, .pepe {
+    background: var(--black);
+    padding: 0.8rem;
+    border: 2px solid var(--puke-green);
+    position: relative;
+}
 
-        const logsBtn = document.getElementById('logs-btn');
-        logsBtn.addEventListener('click', () => {
-            logsPanel.style.display = logsPanel.style.display === 'block' ? 'none' : 'block';
-            addLog('HATE LOGS TOGGLED');
-        });
+.news-card::after, .hi::after, .money::after, .pepe::after {
+    content: "FUCK";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    color: rgba(255, 0, 0, 0.3);
+    font-size: 2.5rem;
+}
 
-        const firewallBtn = document.getElementById('firewall-btn');
-        firewallBtn.addEventListener('click', () => {
-            output.textContent = '> FUCK YOUR DEFENSE!';
-            addLog('DEFENSE HATED');
-            progressFill.style.width = '75%';
-        });
+.news-card:hover, .hi:hover, .money:hover, .pepe:hover {
+    transform: scale(1.1);
+    border-color: var(--bloody-red);
+}
 
-        const pingBtn = document.getElementById('ping-btn');
-        pingBtn.addEventListener('click', () => {
-            output.textContent = '> SCREAMING LOUD...';
-            addLog('RAGE SCREAM');
-            setTimeout(() => {
-                output.textContent = '> FUCK YOU HEARD ME!';
-                addLog('SCREAM DONE');
-            }, 800);
-        });
+.hack-report {
+    margin: 2rem 1rem;
+    padding: 1rem;
+    border: 4px solid var(--bloody-red);
+    background: var(--black);
+    animation: hateWarning 0.5s infinite;
+}
 
-        const hateBtn = document.getElementById('hate-btn');
-        hateBtn.addEventListener('click', () => {
-            output.textContent = '> HATE BLASTING...';
-            addLog('HATE SENT');
-            document.body.style.background = 'radial-gradient(circle, #ff0000, #000000)';
-            setTimeout(() => {
-                document.body.style.background = var(--black);
-                output.textContent = '> HATE DELIVERED!';
-            }, 500);
-        });
+button {
+    padding: 0.6rem;
+    border: 2px solid var(--puke-green);
+    background: var(--black);
+    color: var(--toxic-yellow);
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
 
-        const trollBtn = document.getElementById('troll-btn');
-        trollBtn.addEventListener('click', () => {
-            output.textContent = '> TROLLING LOSERS...';
-            addLog('TROLL ATTACK');
-            document.body.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                document.body.style.transform = 'scale(0.95)';
-                output.textContent = '> FUCKING TROLLED!';
-                setTimeout(() => document.body.style.transform = 'scale(1)', 300);
-            }, 300);
-        });
+button:hover {
+    background: var(--bloody-red);
+    color: var(--black);
+    transform: scale(1.15);
+}
 
-        const hateMessages = [
-            'FUCK EVERYONE',
-            'I HATE THIS',
-            'YOU SUCK',
-            'DIE ALREADY',
-            'FUCK OFF NOW'
-        ];
-        
-        setInterval(() => {
-            if (Math.random() < 0.4) {
-                addLog(hateMessages[Math.floor(Math.random() * hateMessages.length)]);
-            }
-        }, 1500);
-    </script>
-</body>
-</html>
+.logs-panel {
+    border: 3px solid var(--sick-purple);
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 0 40px var(--shadow);
+}
+
+@keyframes hateRage {
+    0% { transform: translateX(0) rotate(-15deg); }
+    100% { transform: translateX(-50%) rotate(-15deg); }
+}
+
+@keyframes rageText {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes hatePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes hateShake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(3px, -3px); }
+    50% { transform: translate(-3px, 3px); }
+    75% { transform: translate(3px, 3px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes hateBlink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes hateWarning {
+    0% { border-color: var(--bloody-red); }
+    50% { border-color: var(--toxic-yellow); }
+    100% { border-color: var(--bloody-red); }
+}
