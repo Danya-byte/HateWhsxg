@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>HateWhsxg - Terminal Access</title>
+    <title>HateWhsxg - DarkNet Terminal</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14' fill='%2300ff00' font-family='monospace'>$</text></svg>">
 </head>
 <body>
+    <!-- Терминал -->
+    <div class="terminal-overlay" id="terminal-overlay">
+        <div class="terminal-content" id="terminal-content">
+            > Initializing DarkNet Terminal v3.1...<br>
+            > Booting kernel... [OK]<br>
+            > Loading exploits... [OK]
+        </div>
+        <input type="text" class="terminal-input" id="terminal-input" placeholder="> Enter command..." autocomplete="off">
+    </div>
+
     <header>
-        <h2 class="hedt">[root@hatewhsxg /]$</h2>
+        <h2 class="hedt">[root@hatewhsxg /darknet]$</h2>
         <div class="header-btns">
             <button class="logs-btn" id="logs-btn">> Logs</button>
             <button class="firewall-btn" id="firewall-btn">> Firewall</button>
             <button class="ping-btn" id="ping-btn">> Ping</button>
             <button class="scan-btn" id="scan-btn">> Scan</button>
             <button class="encrypt-btn" id="encrypt-btn">> Encrypt</button>
+            <button class="terminal-btn" id="terminal-btn">> Term</button>
         </div>
     </header>
 
     <main>
         <section class="profile-container">
-            <img class="profile" src="profile.png" alt="Profile">
+            <img class="profile" src="profile.png" alt="Profile" id="profile-img">
             <h1 class="nick" id="telegram-link">Whsxg</h1>
-            <p class="info">> System breach active<br>> Threat level: Critical</p>
+            <p class="info">> DarkNet Access: Active<br>> Threat Level: <span id="threat-level">Critical</span></p>
+        </section>
+
+        <section class="dashboard">
+            <h2 class="dash-title">> SYSTEM DASHBOARD</h2>
+            <div class="flex">
+                <div class="dash-card">
+                    <h3 class="dash-label">> CPU Load</h3>
+                    <p class="dash-value" id="cpu-load">0%</p>
+                </div>
+                <div class="dash-card">
+                    <h3 class="dash-label">> Memory</h3>
+                    <p class="dash-value" id="mem-usage">0%</p>
+                </div>
+                <div class="dash-card">
+                    <h3 class="dash-label">> Network</h3>
+                    <p class="dash-value" id="net-traffic">0 KB/s</p>
+                </div>
+            </div>
         </section>
 
         <section class="news-section">
@@ -38,33 +68,38 @@
                     <h3 class="infnew">> TG Takeover</h3>
                     <p class="infon">> Script injected<br>> Funds siphoned</p>
                 </div>
+                <div class="news-card">
+                    <img src="news3.png" alt="Phish">
+                    <h3 class="infnew">> Phishing Net</h3>
+                    <p class="infon">> Credentials stolen<br>> 2FA bypassed</p>
+                </div>
             </div>
         </section>
 
-        <section class="reasons-section">
-            <h2 class="prich">> DEFENSE OPTIONS</h2>
+        <section class="tools-section">
+            <h2 class="tools-title">> HACKER TOOLS</h2>
             <div class="flex">
-                <div class="hi">
-                    <img src="hi.gif" alt="Hi">
-                    <h3 class="top">> Social Eng</h3>
-                    <p class="inftop">> Manipulate target<br>> Success: 10%</p>
+                <div class="tool-card">
+                    <h3 class="tool-name">> Brute Force</h3>
+                    <p class="tool-desc">> Crack passwords<br>> Success: 40%</p>
+                    <button class="tool-btn" data-tool="brute">> Run</button>
                 </div>
-                <div class="money">
-                    <img src="money.gif" alt="Money">
-                    <h3 class="top">> Ransom</h3>
-                    <p class="inftop">> Pay to delay<br>> Success: 25%</p>
+                <div class="tool-card">
+                    <h3 class="tool-name">> Packet Sniffer</h3>
+                    <p class="tool-desc">> Capture traffic<br>> Success: 60%</p>
+                    <button class="tool-btn" data-tool="sniff">> Run</button>
                 </div>
-                <div class="pepe">
-                    <img src="pepe.gif" alt="Pepe">
-                    <h3 class="top">> NFT Bait</h3>
-                    <p class="inftop">> Distract with NFT<br>> Success: 15%</p>
+                <div class="tool-card">
+                    <h3 class="tool-name">> Exploit DB</h3>
+                    <p class="tool-desc">> Find vulns<br>> Success: 75%</p>
+                    <button class="tool-btn" data-tool="exploit">> Run</button>
                 </div>
             </div>
         </section>
 
         <div class="hack-report">
             <h3 class="report-title">> EXPLOIT CONTROL</h3>
-            <p>> Payload status: <span id="payload-status">Idle</span></p>
+            <p>> Payload: <span id="payload-status">Idle</span> | Target: <span id="target-ip">192.168.1.1</span></p>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
@@ -76,7 +111,7 @@
 
     <footer>
         <p>> Uplink: <a href="#" class="footer-link" id="footer-telegram-link">tg@hatewhsxg</a></p>
-        <p class="system-status">> Uptime: <span id="uptime">0s</span> | Load: <span id="cpu-load">0%</span> | Mem: <span id="mem-usage">0%</span></p>
+        <p class="system-status">> Uptime: <span id="uptime">0s</span> | Connections: <span id="conn-count">0</span></p>
     </footer>
 
     <div class="modal" id="confirm-modal">
@@ -91,146 +126,8 @@
         <div class="logs-content" id="logs-content">> System boot...</div>
     </div>
 
-    <script>
-        const logsPanel = document.getElementById('logs-panel');
-        const logsContent = document.getElementById('logs-content');
-        function addLog(message) {
-            const timestamp = new Date().toLocaleTimeString();
-            logsContent.innerHTML += `<br>> [${timestamp}] ${message}`;
-            logsContent.scrollTop = logsContent.scrollHeight;
-        }
+    <audio id="beep-sound" src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA="></audio>
 
-        let hackCount = 0, packetCount = 0;
-        setInterval(() => {
-            hackCount += Math.floor(Math.random() * 3) + 1;
-            packetCount += Math.floor(Math.random() * 100) + 50;
-            document.getElementById('hack-counter').textContent = hackCount;
-            document.getElementById('packet-counter').textContent = packetCount;
-            if (Math.random() < 0.2) addLog(`Intrusion #${hackCount} | Packets: ${packetCount}`);
-        }, 2000);
-
-        let uptime = 0;
-        setInterval(() => {
-            uptime++;
-            document.getElementById('uptime').textContent = `${uptime}s`;
-            document.getElementById('cpu-load').textContent = `${Math.floor(Math.random() * 80) + 20}%`;
-            document.getElementById('mem-usage').textContent = `${Math.floor(Math.random() * 90) + 10}%`;
-        }, 1000);
-
-        const telegramLink = document.getElementById('telegram-link');
-        const footerTelegramLink = document.getElementById('footer-telegram-link');
-        const modal = document.getElementById('confirm-modal');
-        const confirmYes = document.getElementById('confirm-yes');
-        const confirmNo = document.getElementById('confirm-no');
-
-        function showModal(linkElement) {
-            modal.style.display = 'flex';
-            confirmYes.onclick = () => {
-                window.open('https://t.me/hatewhsxg', '_blank');
-                addLog('Uplink to Telegram established');
-                modal.style.display = 'none';
-            };
-            confirmNo.onclick = () => {
-                addLog('Uplink to Telegram aborted');
-                modal.style.display = 'none';
-            };
-        }
-        telegramLink.addEventListener('click', (e) => { e.preventDefault(); showModal(telegramLink); });
-        footerTelegramLink.addEventListener('click', (e) => { e.preventDefault(); showModal(footerTelegramLink); });
-
-        const hackBtn = document.getElementById('hack-btn');
-        const progressFill = document.getElementById('progress-fill');
-        const output = document.getElementById('output');
-        const payloadStatus = document.getElementById('payload-status');
-        hackBtn.addEventListener('click', () => {
-            progressFill.style.width = '0';
-            output.textContent = '> Deploying exploit...';
-            payloadStatus.textContent = 'Running';
-            addLog('Exploit deployment started');
-            setTimeout(() => {
-                progressFill.style.width = '100%';
-                output.textContent = '> Target owned!';
-                payloadStatus.textContent = 'Success';
-                addLog('Exploit deployed successfully');
-                setTimeout(() => payloadStatus.textContent = 'Idle', 2000);
-            }, 150);
-        });
-
-        const logsBtn = document.getElementById('logs-btn');
-        logsBtn.addEventListener('click', () => {
-            logsPanel.style.display = logsPanel.style.display === 'block' ? 'none' : 'block';
-            addLog('Log panel toggled');
-        });
-
-        let firewallActive = false;
-        const firewallBtn = document.getElementById('firewall-btn');
-        firewallBtn.addEventListener('click', () => {
-            firewallActive = !firewallActive;
-            output.textContent = `> Firewall ${firewallActive ? 'ON' : 'OFF'}`;
-            addLog(`Firewall ${firewallActive ? 'enabled' : 'disabled'}`);
-            progressFill.style.width = firewallActive ? '60%' : '0';
-        });
-
-        const pingBtn = document.getElementById('ping-btn');
-        pingBtn.addEventListener('click', () => {
-            output.textContent = '> Pinging target...';
-            addLog('Ping initiated');
-            progressFill.style.width = '0';
-            setTimeout(() => {
-                const latency = Math.floor(Math.random() * 150) + 30;
-                progressFill.style.width = '90%';
-                output.textContent = `> Latency: ${latency}ms`;
-                addLog(`Ping completed: ${latency}ms`);
-            }, 800);
-        });
-
-        const scanBtn = document.getElementById('scan-btn');
-        scanBtn.addEventListener('click', () => {
-            output.textContent = '> Scanning network...';
-            addLog('Network scan started');
-            progressFill.style.width = '0';
-            setTimeout(() => {
-                progressFill.style.width = '75%';
-                const ports = Math.floor(Math.random() * 50) + 10;
-                output.textContent = `> Found ${ports} open ports`;
-                addLog(`Scan complete: ${ports} vulnerabilities`);
-            }, 1000);
-        });
-
-        const encryptBtn = document.getElementById('encrypt-btn');
-        encryptBtn.addEventListener('click', () => {
-            output.textContent = '> Encrypting data...';
-            addLog('Encryption process initiated');
-            progressFill.style.width = '0';
-            setTimeout(() => {
-                progressFill.style.width = '100%';
-                output.textContent = '> Data encrypted: AES-256';
-                addLog('Encryption completed');
-            }, 1200);
-        });
-
-        const alerts = [
-            'Suspicious packet intercepted',
-            'DDoS attempt blocked',
-            'Backdoor access detected',
-            'Firewall breach attempt',
-            'Rootkit installation failed',
-            'SQL injection detected'
-        ];
-        setInterval(() => {
-            if (Math.random() < 0.15) {
-                addLog(alerts[Math.floor(Math.random() * alerts.length)]);
-            }
-        }, 4000);
-
-        // Эффект случайного сбоя
-        setInterval(() => {
-            if (Math.random() < 0.05) {
-                document.body.style.filter = 'blur(1px)';
-                setTimeout(() => document.body.style.filter = 'none', 200);
-                addLog('System glitch detected');
-            }
-        }, 10000);
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
