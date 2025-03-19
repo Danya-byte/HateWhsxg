@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Rollpit - DarkNet Terminal v4.0</title>
+    <title>Rollpit - DarkNet Terminal v5.0</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14' fill='%2300ff00' font-family='monospace'>$</text></svg>">
 </head>
 <body>
+    <!-- Экран авторизации -->
     <div class="auth-overlay" id="auth-overlay">
         <div class="auth-content">
-            <h2>> DarkNet Access</h2>
+            <h2>> DarkNet Access v5.0</h2>
             <input type="text" id="auth-username" placeholder="> Username" autocomplete="off">
             <input type="password" id="auth-password" placeholder="> Password">
             <button class="auth-btn" id="auth-btn">> Login</button>
@@ -18,9 +19,10 @@
         </div>
     </div>
 
+    <!-- Терминал -->
     <div class="terminal-overlay" id="terminal-overlay">
         <div class="terminal-content" id="terminal-content">
-            > Initializing DarkNet Terminal v4.0...<br>
+            > Initializing DarkNet Terminal v5.0...<br>
             > Booting kernel... [OK]<br>
             > Loading exploits... [OK]
         </div>
@@ -37,6 +39,7 @@
             <button class="encrypt-btn" id="encrypt-btn">> Encrypt</button>
             <button class="ddos-btn" id="ddos-btn">> DDoS</button>
             <button class="inject-btn" id="inject-btn">> Inject</button>
+            <button class="phish-btn" id="phish-btn">> Phish</button>
             <button class="terminal-btn" id="terminal-btn">> Term</button>
             <button class="logout-btn" id="logout-btn">> Logout</button>
         </div>
@@ -46,7 +49,7 @@
         <section class="profile-container">
             <img class="profile" src="https://i.postimg.cc/Fsb0gvvH/photo-2025-03-20-02-17-29.jpg" alt="Profile" id="profile-img">
             <h1 class="nick" id="telegram-link">Rollpit [DEV]</h1>
-            <p class="info">> DarkNet Access: <span id="access-status">Active</span><br>> Threat Level: <span id="threat-level">Critical</span></p>
+            <p class="info">> Access Level: <span id="access-level">Guest</span><br>> DarkNet Access: <span id="access-status">Inactive</span><br>> Threat Level: <span id="threat-level">Critical</span></p>
         </section>
 
         <section class="dashboard">
@@ -115,12 +118,18 @@
                     <p class="tool-desc">> Inject SQL<br>> Success: 50%</p>
                     <button class="tool-btn" data-tool="sql">> Run</button>
                 </div>
+                <div class="tool-card">
+                    <h3 class="tool-name">> Phishing Kit</h3>
+                    <p class="tool-desc">> Steal creds<br>> Success: 65%</p>
+                    <button class="tool-btn" data-tool="phish">> Run</button>
+                </div>
             </div>
         </section>
 
         <section class="map-section">
             <h2 class="map-title">> NETWORK MAP</h2>
             <canvas id="network-map" width="600" height="300"></canvas>
+            <p class="map-info">> Infected Nodes: <span id="infected-count">0</span></p>
         </section>
 
         <div class="hack-report">
