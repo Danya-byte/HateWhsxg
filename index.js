@@ -58,7 +58,7 @@ const confirmNo = document.getElementById('confirm-no');
 function showModal(linkElement) {
     modal.style.display = 'flex';
     confirmYes.onclick = () => {
-        window.open('https://t.me/hatewhsxg', '_blank');
+        window.open('https://t.me/rollpit', '_blank');
         addLog('Uplink to Telegram established');
         modal.style.display = 'none';
     };
