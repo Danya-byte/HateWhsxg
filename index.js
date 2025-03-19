@@ -38,11 +38,11 @@ function addTerminalOutput(message) {
 authBtn.addEventListener('click', () => {
     const username = authUsername.value.trim();
     const password = authPassword.value.trim();
-    if (username === 'root' && password === 'darknet') {
+    if (username === 'darknet' && password === 'darknet') {
         isAuthenticated = true;
         authOverlay.style.display = 'none';
         document.getElementById('access-status').textContent = 'Active';
-        addLog('User authenticated: root');
+        addLog('User authenticated: darknet');
     } else {
         authError.textContent = '> Access denied. Invalid credentials.';
         addLog('Failed login attempt');
