@@ -19,6 +19,22 @@ body {
     font-family: 'Courier New', monospace;
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Бегущий код в фоне */
+body::before {
+    content: "101010 001101 110011 010101 111000 000111";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(0, 255, 0, 0.1);
+    font-size: 1rem;
+    white-space: nowrap;
+    animation: codeRun 20s linear infinite;
+    pointer-events: none;
 }
 
 header {
@@ -38,6 +54,7 @@ header {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: glitch 3s infinite;
 }
 
 .profile-container {
@@ -63,6 +80,8 @@ header {
     font-size: 2rem;
     color: var(--neon-blue);
     margin: 1rem 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .nick:hover {
@@ -90,6 +109,7 @@ header {
     text-align: center;
     margin-bottom: 2rem;
     text-shadow: 0 0 10px var(--shadow);
+    animation: glitch 4s infinite;
 }
 
 .flex {
@@ -154,7 +174,24 @@ header {
     height: 100%;
     background: var(--neon-green);
     width: 0;
-    animation: hackFill 3s infinite;
+    transition: width 1s ease;
+}
+
+.hack-btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    background: var(--neon-red);
+    color: var(--black);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+}
+
+.hack-btn:hover {
+    background: var(--neon-green);
+    color: var(--black);
 }
 
 footer {
@@ -173,13 +210,61 @@ footer {
     color: var(--neon-green);
 }
 
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(20, 20, 20, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--neon-green);
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 20px var(--shadow);
+}
+
+.modal-btn {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    background: var(--neon-red);
+    color: var(--black);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+}
+
+.modal-btn:hover {
+    background: var(--neon-green);
+}
+
+/* Анимации */
+@keyframes codeRun {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
 @keyframes scan {
     0% { box-shadow: 0 0 10px var(--neon-green); }
     50% { box-shadow: 0 0 20px var(--neon-green); }
     100% { box-shadow: 0 0 10px var(--neon-green); }
 }
 
-@keyframes hackFill {
-    0% { width: 0; }
-    100% { width: 100%; }
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    100% { transform: translate(0); }
 }
